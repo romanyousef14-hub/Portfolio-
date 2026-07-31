@@ -1,0 +1,3002 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="main-html">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta name="description" content="منصة أنا المصري - رحلة التحول من الأدوات إلى القيمة المؤسسية. دليل شامل للأدوات التشغيلية والإدارية." />
+    <title>أنا المصري | المنصة</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* ============================================================
+                   CSS VARIABLES — مستوحاة من صفحة تسجيل الدخول
+                   ============================================================ */
+        :root {
+            --primary: #00D2FF;
+            --secondary: #0077CC;
+            --accent: #2563EB;
+            --accent-light: #3B82F6;
+            --accent-dark: #1D4ED8;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --purple: #8B5CF6;
+            --rose: #F43F5E;
+            --cyan: #06B6D4;
+            --orange: #F97316;
+
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.45);
+
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --glass-shadow-hover: 0 16px 56px rgba(0, 0, 0, 0.45);
+
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+
+            --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-base: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+            --font-primary: 'Cairo', sans-serif;
+            --font-display: 'Tajawal', sans-serif;
+
+            --header-height: 68px;
+            --max-width: 1280px;
+        }
+
+        /* ===== الوضع الفاتح ===== */
+        .light-mode {
+            --bg-primary: #F0F4F8;
+            --bg-secondary: #E2E8F0;
+            --text-primary: #0F172A;
+            --text-secondary: rgba(15, 23, 42, 0.8);
+            --text-muted: rgba(15, 23, 42, 0.5);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --glass-shadow-hover: 0 16px 56px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+                   BACKGROUND — مستوحاة من صفحة تسجيل الدخول
+                   ============================================================ */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .bg-canvas .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: orbFloat 8s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+        .bg-canvas .orb-1 {
+            width: min(350px, 60vw);
+            height: min(350px, 60vw);
+            background: rgba(0, 210, 255, 0.08);
+            top: -100px;
+            right: -80px;
+            animation-delay: 0s;
+        }
+        .bg-canvas .orb-2 {
+            width: min(280px, 50vw);
+            height: min(280px, 50vw);
+            background: rgba(37, 99, 235, 0.06);
+            bottom: -60px;
+            left: -60px;
+            animation-delay: -3s;
+        }
+        .bg-canvas .orb-3 {
+            width: min(220px, 40vw);
+            height: min(220px, 40vw);
+            background: rgba(245, 158, 11, 0.04);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -6s;
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(40px, -30px) scale(1.1);
+            }
+        }
+
+        .bg-canvas .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+                   LOADING SCREEN
+                   ============================================================ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #loader .loader-ring {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 3px solid rgba(0, 210, 255, 0.08);
+            border-top-color: var(--primary);
+            animation: spin 0.9s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        #loader .loader-text {
+            margin-top: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        /* ============================================================
+                   NAVIGATION — مستوحاة من صفحة تسجيل الدخول
+                   ============================================================ */
+        .navbar-custom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: var(--transition-base);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            height: var(--header-height);
+        }
+        .light-mode .navbar-custom {
+            background: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+        .navbar-custom.scrolled {
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+        }
+        .light-mode .navbar-custom.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar-custom .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .navbar-custom .brand {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-custom .brand i {
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+        .navbar-custom .brand span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 50px;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(0, 210, 255, 0.08);
+            color: var(--primary);
+        }
+        .light-mode .nav-links a:hover,
+        .light-mode .nav-links a.active {
+            background: rgba(0, 210, 255, 0.06);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .nav-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 6px 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition-fast);
+            font-family: var(--font-primary);
+        }
+        .nav-btn:hover {
+            background: rgba(0, 210, 255, 0.08);
+            color: var(--primary);
+        }
+        .light-mode .nav-btn:hover {
+            background: rgba(0, 210, 255, 0.05);
+        }
+        .nav-btn span {
+            font-size: 0.65rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            background: rgba(0, 210, 255, 0.08);
+            color: var(--primary);
+        }
+
+        .hamburger-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            padding: 4px 8px;
+            cursor: pointer;
+            display: none;
+            transition: var(--transition-fast);
+        }
+        .hamburger-btn:hover {
+            color: var(--primary);
+        }
+
+        /* ===== Mobile Sidebar ===== */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-base);
+        }
+        .sidebar-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: min(300px, 80vw);
+            height: 100vh;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-left: 1px solid var(--glass-border);
+            padding: 24px 20px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .light-mode .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar .sidebar-brand {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 12px;
+        }
+        .sidebar .sidebar-brand i {
+            color: var(--primary);
+        }
+        .sidebar .sidebar-brand span {
+            color: var(--primary);
+        }
+
+        .sidebar a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(0, 210, 255, 0.06);
+            color: var(--primary);
+        }
+        .sidebar a i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .sidebar .sidebar-close {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .sidebar .sidebar-close:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================================
+                   PROGRESS INDICATOR
+                   ============================================================ */
+        #progress-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-light), var(--warning));
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.1s linear;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ============================================================
+                   HERO — مستوحاة من صفحة تسجيل الدخول
+                   ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: calc(var(--header-height) + 32px) 0 48px;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: clamp(2.4rem, 8vw, 4.6rem);
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--accent-light), var(--warning));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 560px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .hero .btn-group-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition-base);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 30px rgba(0, 210, 255, 0.2);
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 210, 255, 0.3);
+            color: #fff;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition-base);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+            background: rgba(0, 210, 255, 0.04);
+        }
+        .light-mode .btn-outline-custom {
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+        .light-mode .btn-outline-custom:hover {
+            border-color: var(--primary);
+        }
+
+        .hero .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px 48px;
+            margin-top: 4px;
+        }
+        .hero .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin: 0;
+        }
+        .hero .stat-item h3 .counter {
+            background: linear-gradient(135deg, var(--primary), var(--warning));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .stat-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Floating shapes */
+        .floating-shapes {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .floating-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.03;
+            background: var(--primary);
+            animation: floatShape 22s infinite ease-in-out;
+        }
+        .floating-shapes .shape:nth-child(1) {
+            width: 280px;
+            height: 280px;
+            top: -80px;
+            right: -60px;
+            animation-delay: 0s;
+            background: var(--primary);
+        }
+        .floating-shapes .shape:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            bottom: 20px;
+            left: -40px;
+            animation-delay: -7s;
+            background: var(--accent);
+        }
+        .floating-shapes .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 40%;
+            right: 8%;
+            animation-delay: -14s;
+            background: var(--warning);
+        }
+        @keyframes floatShape {
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -40px) scale(1.08) rotate(5deg);
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.92) rotate(-3deg);
+            }
+            75% {
+                transform: translate(40px, 10px) scale(1.04) rotate(4deg);
+            }
+        }
+
+        /* ============================================================
+                   GLASS CARD
+                   ============================================================ */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            transition: var(--transition-base);
+            box-shadow: var(--glass-shadow);
+            height: 100%;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--glass-shadow-hover);
+            border-color: rgba(0, 210, 255, 0.1);
+        }
+        .light-mode .glass-card:hover {
+            border-color: rgba(0, 210, 255, 0.15);
+        }
+
+        .glass-card .icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        .glass-card .icon-wrap.gold {
+            background: linear-gradient(135deg, var(--warning), #D97706);
+        }
+        .glass-card .icon-wrap.success {
+            background: linear-gradient(135deg, var(--success), #059669);
+        }
+        .glass-card .icon-wrap.purple {
+            background: linear-gradient(135deg, var(--purple), #6D28D9);
+        }
+        .glass-card .icon-wrap.rose {
+            background: linear-gradient(135deg, var(--rose), #BE123C);
+        }
+        .glass-card .icon-wrap.cyan {
+            background: linear-gradient(135deg, var(--cyan), #0E7490);
+        }
+        .glass-card .icon-wrap.orange {
+            background: linear-gradient(135deg, var(--orange), #EA580C);
+        }
+        .glass-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+        .glass-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ============================================================
+                   SECTION TITLES
+                   ============================================================ */
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        .section-title .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 620px;
+            margin: 0 auto 32px;
+            line-height: 1.9;
+        }
+        .section-divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-light));
+            border-radius: 4px;
+            margin: 0 auto 14px;
+        }
+
+        /* ============================================================
+                   WELCOME CARD — مع الزوايا المزخرفة
+                   ============================================================ */
+        .welcome-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 24px 28px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        /* === زوايا البطاقة المزخرفة === */
+        .corner-accent {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .corner-accent.top-right {
+            top: 12px;
+            right: 12px;
+            border-top: 2px solid var(--warning);
+            border-right: 2px solid var(--warning);
+            border-radius: 0 12px 0 0;
+        }
+        .corner-accent.bottom-left {
+            bottom: 12px;
+            left: 12px;
+            border-bottom: 2px solid var(--primary);
+            border-left: 2px solid var(--primary);
+            border-radius: 0 0 0 12px;
+        }
+        .light-mode .corner-accent.top-right {
+            opacity: 0.3;
+        }
+        .light-mode .corner-accent.bottom-left {
+            opacity: 0.3;
+        }
+
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.04), transparent 70%);
+            pointer-events: none;
+        }
+
+        .welcome-card .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-card .greeting {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .welcome-card .greeting span {
+            color: var(--primary);
+        }
+        .welcome-card .greeting .wave {
+            display: inline-block;
+            animation: wave 2.5s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(15deg);
+            }
+            75% {
+                transform: rotate(-10deg);
+            }
+        }
+
+        .welcome-card .daily-tip {
+            margin-top: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .welcome-card .daily-tip i {
+            color: var(--warning);
+        }
+
+        .welcome-card .quick-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 28px;
+            margin-top: 12px;
+        }
+        .welcome-card .quick-stats .qs-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .welcome-card .quick-stats .qs-item .qs-num {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        /* ============================================================
+                   TOOLS CARDS — تصميم عصري
+                   ============================================================ */
+        .tool-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 1px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-light), transparent, transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 210, 255, 0.03), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .tool-card:hover::before {
+            opacity: 1;
+        }
+        .tool-card:hover::after {
+            opacity: 1;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 210, 255, 0.02);
+            border-color: rgba(0, 210, 255, 0.1);
+        }
+        .light-mode .tool-card:hover {
+            box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.06), 0 0 30px rgba(0, 210, 255, 0.02);
+            border-color: rgba(0, 210, 255, 0.12);
+        }
+
+        .tool-card .tool-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tool-card:hover .tool-icon {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .tool-card .tool-icon.gold {
+            background: linear-gradient(135deg, var(--warning), #D97706);
+        }
+        .tool-card .tool-icon.success {
+            background: linear-gradient(135deg, var(--success), #059669);
+        }
+        .tool-card .tool-icon.purple {
+            background: linear-gradient(135deg, var(--purple), #6D28D9);
+        }
+        .tool-card .tool-icon.rose {
+            background: linear-gradient(135deg, var(--rose), #BE123C);
+        }
+        .tool-card .tool-icon.cyan {
+            background: linear-gradient(135deg, var(--cyan), #0E7490);
+        }
+        .tool-card .tool-icon.orange {
+            background: linear-gradient(135deg, var(--orange), #EA580C);
+        }
+
+        .tool-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+        .tool-card .tool-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .tool-card .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        .tool-card .tool-tags span {
+            font-size: 0.6rem;
+            padding: 3px 12px;
+            border-radius: 50px;
+            background: rgba(0, 210, 255, 0.06);
+            color: var(--primary);
+            font-weight: 600;
+            border: 1px solid rgba(0, 210, 255, 0.04);
+        }
+
+        .tool-card .btn-detail {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-base);
+            cursor: pointer;
+        }
+        .tool-card .btn-detail:hover {
+            gap: 12px;
+            color: var(--accent-light);
+        }
+
+        /* ============================================================
+                   MODAL
+                   ============================================================ */
+        .modal-custom {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-custom.active {
+            display: flex;
+        }
+        .modal-custom .modal-content {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 36px 32px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 1px solid var(--glass-border);
+            animation: slideUp 0.4s ease;
+        }
+        .light-mode .modal-custom .modal-content {
+            background: #fff;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+        }
+        .modal-custom .modal-close {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-custom .modal-close:hover {
+            background: rgba(0, 210, 255, 0.08);
+            color: var(--primary);
+        }
+        .modal-custom .modal-body h4 {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .modal-custom .modal-body .modal-sub {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+        .modal-custom .modal-body .detail-section {
+            margin-bottom: 14px;
+        }
+        .modal-custom .modal-body .detail-section h6 {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--primary);
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .modal-custom .modal-body .detail-section p,
+        .modal-custom .modal-body .detail-section li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .modal-custom .modal-body .detail-section ul {
+            padding-right: 18px;
+            margin: 4px 0 0;
+        }
+        .modal-custom .modal-body .detail-section ul li {
+            margin-bottom: 2px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ============================================================
+                   USAGE GUIDE - Accordion
+                   ============================================================ */
+        .usage-accordion .accordion-item {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm) !important;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: var(--transition-base);
+        }
+        .usage-accordion .accordion-item:hover {
+            border-color: rgba(0, 210, 255, 0.08);
+        }
+        .usage-accordion .accordion-header {
+            background: none;
+            border: none;
+            padding: 14px 18px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            text-align: right;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+        .usage-accordion .accordion-header:hover {
+            color: var(--primary);
+        }
+        .usage-accordion .accordion-header i:first-child {
+            font-size: 1.1rem;
+            color: var(--primary);
+            width: 24px;
+        }
+        .usage-accordion .accordion-header .arrow {
+            margin-right: auto;
+            transition: var(--transition-base);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .usage-accordion .accordion-header.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+        .usage-accordion .accordion-body {
+            padding: 0 18px 16px;
+        }
+        .usage-accordion .accordion-body ol {
+            padding-right: 18px;
+            margin: 0;
+        }
+        .usage-accordion .accordion-body ol li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.9;
+            margin-bottom: 3px;
+        }
+        .usage-accordion .accordion-body ol li strong {
+            color: var(--text-primary);
+        }
+
+        /* ============================================================
+                   SEARCH OVERLAY
+                   ============================================================ */
+        #search-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 80px;
+        }
+        #search-overlay.active {
+            display: flex;
+        }
+        #search-overlay .search-box {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 28px 24px;
+            max-width: 560px;
+            width: 90%;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+        }
+        #search-overlay .search-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition-fast);
+        }
+        #search-overlay .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+        #search-overlay .search-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.04);
+        }
+        #search-overlay .search-box .search-results {
+            margin-top: 14px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        #search-overlay .search-box .search-results .result-item {
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+        }
+        #search-overlay .search-box .search-results .result-item:hover {
+            background: rgba(0, 210, 255, 0.04);
+        }
+        #search-overlay .search-box .search-results .result-item small {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            display: block;
+        }
+
+        /* ============================================================
+                   FOOTER — مبسط
+                   ============================================================ */
+        .footer {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            color: rgba(255, 255, 255, 0.4);
+            padding: 32px 0 20px;
+            text-align: center;
+        }
+        .light-mode .footer {
+            background: rgba(255, 255, 255, 0.6);
+            color: rgba(15, 23, 42, 0.4);
+        }
+        .footer .brand {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .footer .brand span {
+            color: var(--primary);
+        }
+
+        .footer .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .footer .footer-social a {
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 1rem;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-flex;
+        }
+        .footer .footer-social a:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .footer .footer-social a.whatsapp:hover {
+            color: #25D366;
+        }
+        .footer .footer-social a.linkedin:hover {
+            color: #0A66C2;
+        }
+        .footer .footer-social a.email:hover {
+            color: #EA4335;
+        }
+        .light-mode .footer .footer-social a {
+            color: rgba(0, 0, 0, 0.2);
+        }
+        .light-mode .footer .footer-social a:hover {
+            color: #000;
+        }
+
+        .footer .footer-dev {
+            margin-top: 6px;
+            font-size: 0.7rem;
+            opacity: 0.3;
+        }
+        .footer .footer-dev strong {
+            color: var(--text-primary);
+            opacity: 0.6;
+        }
+        .footer .copy {
+            font-size: 0.75rem;
+            opacity: 0.3;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
+        #back-to-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 999;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(0, 210, 255, 0.2);
+            transition: var(--transition-base);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 210, 255, 0.3);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 991px) {
+            .hamburger-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: calc(var(--header-height) + 16px) 0 32px;
+                min-height: auto;
+            }
+            .hero h1 {
+                font-size: clamp(2rem, 7vw, 2.8rem);
+            }
+            .floating-shapes .shape {
+                display: none;
+            }
+            .hero .stats-row {
+                gap: 16px 32px;
+            }
+            .modal-custom .modal-content {
+                padding: 24px 18px;
+                margin: 10px;
+            }
+            .welcome-card {
+                padding: 18px 16px;
+            }
+            .welcome-card .greeting {
+                font-size: 1.1rem;
+            }
+            .welcome-card .quick-stats {
+                gap: 8px 20px;
+            }
+            .corner-accent {
+                width: 28px;
+                height: 28px;
+            }
+            .corner-accent.top-right {
+                top: 8px;
+                right: 8px;
+            }
+            .corner-accent.bottom-left {
+                bottom: 8px;
+                left: 8px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero .btn-group-hero .btn-primary-custom,
+            .hero .btn-group-hero .btn-outline-custom {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 20px;
+                font-size: 0.85rem;
+            }
+            .glass-card {
+                padding: 20px 16px;
+            }
+            .tool-card {
+                padding: 18px 14px;
+            }
+            .welcome-card {
+                padding: 14px 12px;
+            }
+            .welcome-card .quick-stats {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .modal-custom .modal-content {
+                padding: 20px 14px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .hero .stat-item h3 {
+                font-size: 1.4rem;
+            }
+            .hero .subtitle {
+                font-size: 0.9rem;
+            }
+            .sidebar {
+                width: min(280px, 80vw);
+                padding: 16px;
+            }
+            .nav-btn span {
+                display: none;
+            }
+            .nav-btn {
+                padding: 6px 10px;
+            }
+            .usage-accordion .accordion-header {
+                padding: 12px 14px;
+                font-size: 0.85rem;
+            }
+            .corner-accent {
+                width: 20px;
+                height: 20px;
+            }
+            .corner-accent.top-right {
+                top: 4px;
+                right: 4px;
+                border-width: 1.5px;
+            }
+            .corner-accent.bottom-left {
+                bottom: 4px;
+                left: 4px;
+                border-width: 1.5px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero .stats-row {
+                gap: 12px 20px;
+            }
+            .hero .stat-item h3 {
+                font-size: 1.2rem;
+            }
+            .hero .stat-item p {
+                font-size: 0.7rem;
+            }
+            .tool-card {
+                padding: 14px 10px;
+            }
+            .tool-card h4 {
+                font-size: 0.9rem;
+            }
+            .tool-card .tool-desc {
+                font-size: 0.78rem;
+            }
+        }
+
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
+        .text-primary-custom {
+            color: var(--primary);
+        }
+        .text-secondary-custom {
+            color: var(--text-secondary);
+        }
+        .text-muted-custom {
+            color: var(--text-muted);
+        }
+        .bg-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+                   MOUSE GLOW
+                   ============================================================ */
+        #mouse-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.02) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+        #mouse-glow.visible {
+            opacity: 1;
+        }
+
+        /* ============================================================
+                   SWIPER CUSTOM
+                   ============================================================ */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+        }
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 0.8rem;
+        }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .swiper-pagination-bullet {
+            background: var(--text-muted);
+            opacity: 0.2;
+        }
+        .swiper-pagination-bullet-active {
+            background: var(--primary);
+            opacity: 1;
+        }
+
+        /* ============================================================
+                   REDUCED MOTION
+                   ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .floating-shapes .shape {
+                animation: none;
+            }
+            .bg-canvas .orb {
+                animation: none;
+            }
+            .tool-card {
+                transition: none;
+            }
+            .tool-card:hover {
+                transform: none;
+            }
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .welcome-card .greeting .wave {
+                animation: none;
+            }
+            .sidebar {
+                transition: none;
+            }
+        }
+
+        /* ============================================================
+                   LTR SUPPORT
+                   ============================================================ */
+        [dir="ltr"] .roadmap-item {
+            padding-right: 0;
+            padding-left: 26px;
+            border-right: none;
+            border-left: 2px solid rgba(0, 210, 255, 0.06);
+        }
+        [dir="ltr"] .roadmap-item .roadmap-dot {
+            right: auto;
+            left: -7px;
+        }
+        [dir="ltr"] .modal-custom .modal-close {
+            left: auto;
+            right: 14px;
+        }
+        [dir="ltr"] .sidebar {
+            right: auto;
+            left: -320px;
+        }
+        [dir="ltr"] .sidebar.open {
+            right: auto;
+            left: 0;
+        }
+        [dir="ltr"] .sidebar .sidebar-close {
+            left: auto;
+            right: 16px;
+        }
+        [dir="ltr"] .usage-accordion .accordion-header .arrow {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        [dir="ltr"] .corner-accent.top-right {
+            right: auto;
+            left: 12px;
+            border-right: none;
+            border-left: 2px solid var(--warning);
+            border-radius: 0 0 0 12px;
+        }
+        [dir="ltr"] .corner-accent.bottom-left {
+            left: auto;
+            right: 12px;
+            border-left: none;
+            border-right: 2px solid var(--primary);
+            border-radius: 0 12px 0 0;
+        }
+        @media (max-width: 991px) {
+            [dir="ltr"] .corner-accent.top-right {
+                left: 8px;
+                right: auto;
+            }
+            [dir="ltr"] .corner-accent.bottom-left {
+                right: 8px;
+                left: auto;
+            }
+        }
+        @media (max-width: 576px) {
+            [dir="ltr"] .corner-accent.top-right {
+                left: 4px;
+                right: auto;
+            }
+            [dir="ltr"] .corner-accent.bottom-left {
+                right: 4px;
+                left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    BACKGROUND
+    ============================================================ -->
+    <div class="bg-canvas" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- ============================================================
+    PARTICLES
+    ============================================================ -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================================
+    MOUSE GLOW
+    ============================================================ -->
+    <div id="mouse-glow" aria-hidden="true"></div>
+
+    <!-- ============================================================
+    LOADING
+    ============================================================ -->
+    <div id="loader" role="status" aria-label="جاري التحميل">
+        <div class="loader-ring"></div>
+        <div class="loader-text">أنا المصري</div>
+    </div>
+
+    <!-- ============================================================
+    PROGRESS INDICATOR
+    ============================================================ -->
+    <div id="progress-indicator" role="progressbar" aria-label="تقدم الصفحة"></div>
+
+    <!-- ============================================================
+    NAVIGATION — بدون زر اللغة
+    ============================================================ -->
+    <nav class="navbar-custom" id="navbar" role="navigation" aria-label="القائمة الرئيسية">
+        <div class="container">
+            <a href="#" class="brand" aria-label="أنا المصري - الرئيسية">
+                <i class="fas fa-crown"></i>
+                أنا <span>المصري</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="#tools" role="menuitem">الأدوات</a></li>
+                <li role="none"><a href="#future" role="menuitem">المستقبل</a></li>
+                <li role="none"><a href="#usage" role="menuitem">الدليل</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn" id="searchToggle" aria-label="بحث">
+                    <i class="fas fa-search"></i>
+                    <span>بحث</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع المظلم">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="فتح القائمة" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    SIDEBAR
+    ============================================================ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="القائمة الجانبية">
+        <button class="sidebar-close" id="sidebarClose" aria-label="إغلاق القائمة">
+            <i class="fas fa-xmark"></i>
+        </button>
+        <div class="sidebar-brand">
+            <i class="fas fa-crown"></i>
+            أنا <span>المصري</span>
+        </div>
+        <a href="#tools" class="active"><i class="fas fa-tools"></i> الأدوات</a>
+        <a href="#future"><i class="fas fa-rocket"></i> المستقبل</a>
+        <a href="#usage"><i class="fas fa-book"></i> الدليل</a>
+        <div style="flex:1;"></div>
+        <div style="border-top:1px solid var(--glass-border);padding-top:12px;margin-top:8px;">
+            <a href="#" onclick="document.getElementById('searchToggle').click(); return false;"><i class="fas fa-search"></i> بحث</a>
+            <a href="#" id="sidebarThemeToggle"><i class="fas fa-moon" id="sidebarThemeIcon"></i> المظهر</a>
+        </div>
+    </aside>
+
+    <!-- ============================================================
+    SEARCH OVERLAY
+    ============================================================ -->
+    <div id="search-overlay" role="dialog" aria-label="بحث في الصفحة">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث عن أداة، قسم، أو كلمة مفتاحية..." aria-label="بحث" />
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    HERO — بدون "منصة رقمية متكاملة"
+    ============================================================ -->
+    <header class="hero" id="hero">
+        <div class="floating-shapes" aria-hidden="true">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+
+        <div class="container position-relative" style="z-index:2;">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-duration="800">
+                    <h1>
+                        منصة<br />
+                        <span class="highlight">أنا المصري</span>
+                    </h1>
+                    <p class="subtitle">
+                        رحلة التحول من الأدوات إلى القيمة المؤسسية — منظومة تشغيلية
+                        وإدارية متكاملة لرقمنة العمليات اليومية وتحويل الوقت إلى أصل استراتيجي.
+                    </p>
+                    <div class="btn-group-hero">
+                        <a href="#tools" class="btn-primary-custom">
+                            <i class="fas fa-arrow-left"></i> استعرض الأدوات
+                        </a>
+                        <a href="#usage" class="btn-outline-custom">
+                            <i class="fas fa-play-circle"></i> دليل الاستخدام
+                        </a>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <h3><span class="counter" data-target="10">0</span>+</h3>
+                            <p>أدوات تشغيلية</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3><span class="counter" data-target="12">0</span>+</h3>
+                            <p>أدوات مستقبلية</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3><span class="counter" data-target="100">0</span>%</h3>
+                            <p>رقمنة العمليات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    WELCOME CARD — بدون "تذكرني"، "كلمة المرور"، "البريد"
+    ============================================================ -->
+    <section style="padding:0 0 24px 0;">
+        <div class="container">
+            <div class="welcome-card" data-aos="fade-up" data-aos-duration="600">
+                <div class="corner-accent top-right"></div>
+                <div class="corner-accent bottom-left"></div>
+
+                <div class="welcome-content">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div>
+                            <div class="greeting">
+                                👋 مرحباً بك في <span>أنا المصري</span>
+                                <span class="wave">👋</span>
+                            </div>
+                            <div class="daily-tip">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>نصيحة اليوم: استخدم حاسبة الأقساط لتقديم عروض تمويلية دقيقة لعملائك في ثوانٍ.</span>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#tools" class="btn-primary-custom" style="padding:8px 20px;font-size:0.8rem;">
+                                <i class="fas fa-arrow-left"></i> استكشف
+                            </a>
+                        </div>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="qs-item">
+                            <span class="qs-num">10</span>
+                            <span>أداة تشغيلية</span>
+                        </div>
+                        <div class="qs-item">
+                            <span class="qs-num">12+</span>
+                            <span>أداة مستقبلية</span>
+                        </div>
+                        <div class="qs-item">
+                            <span class="qs-num">⭐</span>
+                            <span>الأكثر استخداماً: حاسبة الأقساط</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TOOLS — الأدوات التشغيلية
+    ============================================================ -->
+    <section id="tools" aria-labelledby="tools-title" style="padding-top:0;">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <div class="section-divider"></div>
+                <h2 class="section-title" id="tools-title">الأدوات <span class="highlight">التشغيلية</span></h2>
+                <p class="section-subtitle">
+                    ١٠ أدوات تشغيلية وإدارية صُممت لخدمة العمليات اليومية، من احتساب التمويلات
+                    إلى تقييم الأداء ومتابعة التحصيل.
+                </p>
+            </div>
+
+            <div class="row g-4" id="toolsGrid">
+                <!-- يتم إنشاء البطاقات بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FUTURE — الأدوات المستقبلية (بطاقات مثل التشغيلية)
+    ============================================================ -->
+    <section id="future" style="padding:48px 0;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);" aria-labelledby="future-title">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <div class="section-divider"></div>
+                <h2 class="section-title" id="future-title">أدوات <span class="highlight">المستقبل</span></h2>
+                <p class="section-subtitle">
+                    أدوات مقترحة لتطوير المنصة في المرحلة القادمة، لتصبح منظومة تشغيلية ذكية متكاملة.
+                </p>
+            </div>
+
+            <div class="row g-4" id="futureGrid">
+                <!-- يتم إنشاء بطاقات الأدوات المستقبلية بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    USAGE GUIDE — دليل الاستخدام
+    ============================================================ -->
+    <section id="usage" aria-labelledby="usage-title" style="padding:48px 0;">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <div class="section-divider"></div>
+                <h2 class="section-title" id="usage-title">دليل <span class="highlight">الاستخدام</span></h2>
+                <p class="section-subtitle">
+                    خطوات استخدام كل أداة بطريقة واضحة ومنظمة — اضغط على الأداة لاستعراض الخطوات.
+                </p>
+            </div>
+
+            <div class="usage-accordion" id="usageAccordion" data-aos="fade-up" data-aos-delay="100">
+                <!-- يتم إنشاء عناصر الأكورديون بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER — بدون روابط إنشاء حساب، تسجيل دخول، ليس لديك حساب
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="brand">أنا <span>المصري</span></div>
+            <p style="font-size:0.75rem;opacity:0.3;margin-top:2px;">منصة التحول الرقمي للتمويل متناهي الصغر</p>
+
+            <div class="footer-social">
+                <a href="https://wa.me/201270600076" target="_blank" class="whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.linkedin.com/in/romanyousef" target="_blank" class="linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:romanyousefk@gmail.com" class="email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+
+            <div class="footer-dev">تطوير وتصميم <strong>Roman Yousef</strong></div>
+            <div class="copy">© 2026 جميع الحقوق محفوظة</div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <button id="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+    </script>
+
+    <script>
+        // ================================================================
+        // DATA — الأدوات التشغيلية
+        // ================================================================
+
+        const toolsData = [{
+            id: 1,
+            name: 'حاسبة الأقساط',
+            icon: 'fa-calculator',
+            iconColor: 'accent',
+            desc: 'احتساب تفاصيل التمويل (القسط، إجمالي المبلغ، المستندات) في ثوانٍ.',
+            problem: 'قبل التطوير، كانت عملية احتساب التمويلات تعتمد على ملفات Excel أو الحسابات اليدوية، مما تسبب في تعدد طرق الحساب واختلاف النتائج، واستهلاك وقت في إعداد بيانات التمويل، وصعوبة تحديث المعادلات عند تغير المنتجات، وزيادة احتمالية الأخطاء.',
+            solution: 'تعتمد الحاسبة على إدخال بيانات التمويل الأساسية مثل قيمة التمويل، مدة السداد، نوع المنتج، نسبة العائد، والرسوم والمصروفات، ثم تقوم تلقائيًا بإظهار قيمة القسط الشهري، إجمالي قيمة السداد، تكلفة التمويل، وتفاصيل الالتزام الشهري للعميل، بالإضافة إلى المستندات المطلوبة ومواعيد السداد.',
+            workflow: 'إدخال البيانات ← احتساب ← عرض النتائج (القسط، إجمالي السداد، المستندات، مواعيد السداد)',
+            value: 'تسريع عملية عرض التمويل، توحيد طريقة الاحتساب، تقليل الأخطاء الحسابية، تقليل الوقت المستغرق، مساعدة الموظف على تقديم صورة كاملة للعميل.',
+            future: 'الربط المباشر ببيانات المنتجات التمويلية، تحديث الشروط والنسب تلقائيًا، إنشاء عروض تمويلية جاهزة، التكامل مع جدول السداد وحاسبة التصفية، إضافة مقارنة بين السيناريوهات التمويلية المختلفة.'
+        }, {
+            id: 2,
+            name: 'حاسبة التصفية',
+            icon: 'fa-file-invoice-dollar',
+            iconColor: 'gold',
+            desc: 'احتساب قيمة السداد المبكر أو إغلاق التمويل بدقة.',
+            problem: 'كانت عملية حساب التصفية تعتمد على مراجعة بيانات التمويل وإجراء حسابات يدوية، مما أدى إلى استغراق وقت في مراجعة تفاصيل القرض، الحاجة إلى الرجوع لملفات متعددة، صعوبة حساب القيمة الدقيقة للتسوية، واحتمالية اختلاف النتائج عند الحساب يدويًا، وتأخر الرد على استفسارات العملاء.',
+            solution: 'تعتمد الحاسبة على تحليل بيانات التمويل الحالية مثل قيمة التمويل الأصلية، مدة التمويل، عدد الأقساط المسددة، الرصيد المتبقي، وتاريخ طلب التصفية، ثم تقوم بحساب قيمة المبلغ المطلوب للتصفية، الرصيد المتبقي، وتفاصيل التسوية.',
+            workflow: 'البحث عن العميل ← مراجعة البيانات ← إدخال تاريخ التصفية ← احتساب التسوية ← عرض المبلغ المطلوب والتفاصيل',
+            value: 'تسريع الرد على طلبات السداد المبكر، تقليل الوقت اللازم لإعداد قيمة التسوية، تحسين دقة الحسابات، توحيد طريقة احتساب التصفية، تحسين تجربة العميل.',
+            future: 'الربط المباشر مع بيانات القروض القائمة، إنشاء تقرير تصفية تفصيلي قابل للطباعة، إضافة مقارنة بين الاستمرار في السداد والتصفية المبكرة، التكامل الكامل مع جدول السداد وملف العميل، إضافة سجل لعمليات التصفية السابقة.'
+        }, {
+            id: 3,
+            name: 'حاسبة الحوافز',
+            icon: 'fa-trophy',
+            iconColor: 'success',
+            desc: 'احتساب الحافز الشهري المستحق بشفافية بناءً على الأداء الفعلي.',
+            problem: 'قبل التطوير، كانت عملية احتساب الحافز تحتاج إلى مراجعة عدة بيانات وتقارير، مما أدى إلى استغراق وقت في تجميع وتحليل النتائج، صعوبة معرفة الموظف لقيمة الحافز المتوقع، احتمالية وجود اختلافات في طريقة الحساب، وضعف الربط بين الأداء الفعلي والمقابل التحفيزي.',
+            solution: 'تعتمد الحاسبة على إدخال مؤشرات الأداء الأساسية مثل نسبة تحقيق المستهدف، حجم الإنتاج، جودة الأداء، مؤشرات الالتزام، والمعايير الخاصة بسياسة الحوافز، ثم تقوم بحساب قيمة الحافز المستحق، مستوى تحقيق الهدف، وتفاصيل مكونات الحافز.',
+            workflow: 'تسجيل الدخول ← إدخال مؤشرات الأداء ← احتساب الحافز ← عرض التقرير (القيمة، النسبة، التفاصيل)',
+            value: 'تسهيل عملية احتساب الحوافز، زيادة وضوح معايير الاستحقاق، ربط الأداء بالمكافأة بشكل مباشر، تقليل الوقت المستخدم، مساعدة المدير على متابعة أداء الفريق.',
+            future: 'الربط المباشر بنتائج الأداء الفعلية، إنشاء لوحة متابعة للحوافز، مقارنة أداء الموظفين خلال الفترات المختلفة، إضافة تنبيهات توضح مستوى تحقيق الهدف، التكامل مع نظام تقييم الأداء وتحدي الموظفين.'
+        }, {
+            id: 4,
+            name: 'حاسبة الضرائب',
+            icon: 'fa-landmark',
+            iconColor: 'purple',
+            desc: 'حساب ضريبة الدخل وصافي الراتب بعد الاستقطاعات.',
+            problem: 'كانت عملية حساب الضرائب تعتمد على المراجعة اليدوية أو ملفات Excel، مما أدى إلى تعقيد المعادلات وتعدد مراحل الحساب، الحاجة إلى تحديث الملفات عند تغير القواعد أو الشرائح الضريبية، احتمالية حدوث أخطاء أثناء إدخال البيانات، وصعوبة مراجعة تفاصيل الاستقطاعات والوصول إلى صافي الدخل بسرعة.',
+            solution: 'تعتمد الحاسبة على إدخال بيانات الدخل والاستقطاعات الأساسية مثل إجمالي الأجر، الأجر التأميني، الاستقطاعات، والإعفاءات والشرائح الضريبية، ثم تقوم تلقائيًا بحساب قيمة الضريبة المستحقة، قيمة الاستقطاعات، وصافي الدخل بعد الخصم مع تفاصيل مراحل الحساب.',
+            workflow: 'إدخال بيانات الراتب ← تحديد الشريحة ← احتساب ← عرض الضريبة المستحقة وصافي الدخل',
+            value: 'تسريع عملية الحساب والمراجعة، تقليل الأخطاء الناتجة عن الحساب اليدوي، توحيد طريقة احتساب الضرائب، تسهيل مراجعة تفاصيل الدخل والاستقطاعات، توفير وسيلة واضحة للموظف والإدارة.',
+            future: 'تحديث الشرائح والقواعد تلقائيًا، إضافة تقارير تفصيلية قابلة للطباعة، ربطها بأدوات الرواتب والاستقطاعات، إضافة مقارنة بين إجمالي الدخل وصافي الدخل، توفير سجل للحسابات السابقة.'
+        }, {
+            id: 5,
+            name: 'جهات الايسكور',
+            icon: 'fa-building-columns',
+            iconColor: 'rose',
+            desc: 'الوصول السريع لبيانات جهات الاستعلام الائتماني بدون بحث يدوي.',
+            problem: 'قبل التطوير، كان الوصول إلى بيانات جهات الايسكور يعتمد على البحث اليدوي أو الرجوع إلى مصادر مختلفة، مما أدى إلى استهلاك وقت أثناء البحث عن الجهة المطلوبة، صعوبة الاحتفاظ بمرجع موحد للجهات، احتمالية استخدام بيانات غير محدثة، وزيادة الخطوات اللازمة أثناء تنفيذ إجراءات الاستعلام.',
+            solution: 'تعتمد الأداة على إنشاء قاعدة بيانات منظمة لجهات الايسكور، تتيح للمستخدم البحث والوصول إلى المعلومات المطلوبة بسهولة من خلال قائمة بالجهات، بيانات تعريفية، وسهولة البحث والوصول للمعلومة.',
+            workflow: 'فتح الأداة ← البحث عن الجهة ← عرض البيانات التعريفية ← الربط بالإجراء',
+            value: 'تقليل وقت البحث عن بيانات الجهات، توفير مرجع موحد لموظفي الائتمان، تحسين سرعة تنفيذ إجراءات الاستعلام، تقليل الاعتماد على المصادر المتفرقة، رفع تنظيم المعلومات.',
+            future: 'إضافة تحديث تلقائي لبيانات الجهات، إضافة تصنيفات أكثر تفصيلًا، ربطها بأدوات الاستعلام الائتماني، إضافة دليل إجراءات خاص بكل جهة، توفير سجل للبحث والاستخدام.'
+        }, {
+            id: 6,
+            name: 'دمج الملفات',
+            icon: 'fa-file-import',
+            iconColor: 'cyan',
+            desc: 'تجميع بيانات عدة فروع أو موظفين في ملف واحد منظم.',
+            problem: 'قبل التطوير، كانت عملية دمج الملفات تتم بشكل يدوي، مما أدى إلى استغراق وقت طويل في نسخ وتجميع البيانات، احتمالية فقدان بيانات أو حدوث أخطاء أثناء الدمج، تكرار نفس الخطوات بشكل يومي أو شهري، صعوبة التعامل مع عدد كبير من الملفات في وقت قصير، وزيادة الجهد المطلوب لإعداد التقارير.',
+            solution: 'تعتمد الأداة على رفع مجموعة من الملفات المطلوبة، ثم تقوم بمعالجة البيانات ودمجها في ملف واحد وفق الهيكل المحدد، مع تجميع البيانات من عدة ملفات، توحيد شكل البيانات قبل الدمج، وإعداد ملف نهائي جاهز للمراجعة أو التحليل.',
+            workflow: 'رفع الملفات ← تحديد الهيكل ← دمج ← تنزيل الملف النهائي ← مراجعة',
+            value: 'تقليل الوقت المستغرق في إعداد التقارير، تقليل الأعمال اليدوية المتكررة، تحسين دقة البيانات المجمعة، تسهيل تجهيز الملفات للإدارة، رفع كفاءة التعامل مع البيانات.',
+            future: 'دعم عدد أكبر من صيغ الملفات، إضافة إمكانية فلترة وترتيب البيانات قبل الدمج، إنشاء تقارير تلقائية بعد عملية الدمج، ربط الأداة بلوحات متابعة وتحليل البيانات، إضافة حفظ تلقائي للعمليات السابقة.'
+        }, {
+            id: 7,
+            name: 'جدول سداد الأقساط',
+            icon: 'fa-table',
+            iconColor: 'orange',
+            desc: 'إنشاء جدول سداد إلكتروني دقيق بدلاً من الكتابة اليدوية.',
+            problem: 'قبل التطوير، كانت جداول السداد يتم إعدادها وكتابتها يدويًا، مما تسبب في استغراق وقت وجهد كبير في إعداد كل جدول على حدة، ارتفاع تكلفة طباعة وتجهيز جداول السداد للعملاء، احتمالية حدوث أخطاء أثناء كتابة البيانات أو مواعيد الأقساط، صعوبة مراجعة الجدول والتأكد من دقته، وعدم اقتناع بعض العملاء بأن مواعيد السداد المكتوبة هي المواعيد الفعلية.',
+            solution: 'تعتمد الأداة على بيانات التمويل المسجلة مثل قيمة التمويل، مدة السداد، قيمة القسط، وتاريخ بداية التمويل، ثم تقوم تلقائيًا بإنشاء جدول سداد يتضمن رقم كل قسط، تاريخ الاستحقاق الفعلي، قيمة القسط، وتفاصيل خطة السداد كاملة.',
+            workflow: 'إدخال بيانات التمويل ← إنشاء الجدول ← مراجعة التواريخ ← عرض أو طباعة للعميل',
+            value: 'تقليل الوقت اللازم لإعداد الجداول، خفض تكلفة إعداد وطباعة جداول السداد، تقليل الأخطاء الناتجة عن الكتابة اليدوية، توحيد شكل الجداول داخل الفروع، توفير جدول دقيق يمكن الرجوع إليه في أي وقت، تحسين تجربة العميل وزيادة الثقة.',
+            future: 'إصدار جدول سداد إلكتروني قابل للمشاركة مع العميل، ربط الجدول ببيانات العميل والتمويل، إضافة تنبيهات قبل مواعيد الاستحقاق، ربطه بأدوات التحصيل والمتابعة، توفير سجل كامل لتغييرات خطة السداد.'
+        }, {
+            id: 8,
+            name: 'مواقع العملاء',
+            icon: 'fa-map-location-dot',
+            iconColor: 'success',
+            desc: 'تحديد ورصد الموقع الجغرافي الفعلي للعميل لتسهيل المتابعة.',
+            problem: 'قبل التطوير، كانت بيانات مواقع العملاء تعتمد غالبًا على الوصف اليدوي أو المعلومات غير الدقيقة، مما أدى إلى صعوبة الوصول إلى العميل في بعض الحالات، استهلاك وقت أكبر أثناء الزيارات الميدانية، اختلاف دقة وصف العناوين، صعوبة متابعة خطوط سير الزيارات، وزيادة الجهد المبذول في عمليات الاستعلام والتحصيل.',
+            solution: 'تعتمد الأداة على تسجيل الموقع الجغرافي للعميل أثناء الزيارة الميدانية، وربطه ببيانات العميل الأساسية، مع حفظ موقع العميل على الخريطة، تسجيل إحداثيات الموقع، البحث عن العميل من خلال الموقع، ومراجعة مواقع العملاء المسجلين.',
+            workflow: 'أثناء الزيارة ← تفعيل تحديد الموقع ← ربط العميل ← حفظ الإحداثيات ← استخدامها للزيارات القادمة',
+            value: 'تحسين دقة بيانات العملاء، تقليل الوقت أثناء الوصول للعملاء، تسهيل عمل موظفي الائتمان والتحصيل، تحسين تنظيم الزيارات الميدانية، توفير قاعدة بيانات جغرافية تساعد في المتابعة، ودعم الإدارة في تحسين تخطيط خطوط السير.',
+            future: 'ربطها بنظام إدارة الزيارات الميدانية، إنشاء مسارات مقترحة للموظفين، إضافة تقارير عن حركة الزيارات، ربط الموقع بملف العميل بالكامل، استخدام التحليلات الجغرافية لدعم قرارات الإدارة.'
+        }, {
+            id: 9,
+            name: 'الإنتاجية المطلوبة لتعويض التسرب',
+            icon: 'fa-arrows-rotate',
+            iconColor: 'gold',
+            desc: 'تحديد عدد وقيمة التمويلات الجديدة المطلوبة لتعويض العملاء المتسربين وتحقيق النمو.',
+            problem: 'في بيئة التمويل متناهي الصغر، لا يعتمد نمو المحفظة فقط على حجم المنح الجديدة، بل يتأثر أيضًا بالأرصدة التي تخرج من المحفظة. وكانت متابعة هذا الأمر تعتمد غالبًا على التقدير الشخصي، مما أدى إلى صعوبة تحديد حجم الإنتاج المطلوب للحفاظ على نمو المحفظة، عدم وضوح تأثير التسرب على تحقيق المستهدف، تأخر اكتشاف الحاجة إلى زيادة الإنتاج، وصعوبة وضع خطة دقيقة لموظفي الائتمان.',
+            solution: 'تعتمد الأداة على تحليل مجموعة من البيانات الأساسية مثل حجم المحفظة الحالية، قيمة التسرب المتوقع، نسبة النمو المستهدفة، متوسط قيمة التمويل، والفترة الزمنية المطلوبة لتحقيق الهدف، ثم تقوم بحساب قيمة الإنتاج المطلوبة لتعويض التسرب، عدد الحالات المطلوبة لتحقيق المستهدف، وحجم التمويل المتوقع للحفاظ على نمو المحفظة.',
+            workflow: 'إدخال البيانات الحالية ← احتساب الاحتياج ← قراءة المخرجات (الإنتاج المطلوب، عدد الحالات) ← توزيع الأهداف',
+            value: 'مساعدة المدير على التخطيط بشكل استباقي، تحديد المستهدف الإنتاجي بصورة أكثر دقة، سرعة التعامل مع انخفاض المحفظة، توجيه جهود فريق الائتمان نحو الهدف المطلوب، تحسين متابعة نمو المحفظة، ودعم الإدارة في الانتقال من رد الفعل إلى التخطيط المسبق.',
+            future: 'ربطها بالمحفظة الفعلية للفرع، تحديث النتائج تلقائيًا مع تغير البيانات، إضافة مقارنة بين المستهدف والمحقق، إنشاء تنبيهات عند ارتفاع معدلات التسرب، ربطها بتقارير الأداء والحوافز.'
+        }, {
+            id: 10,
+            name: 'الوزن النسبي وتقييم الأداء',
+            icon: 'fa-star-half-stroke',
+            iconColor: 'purple',
+            desc: 'تقييم الموظفين بمعايير رقمية عادلة بدون تحيز شخصي.',
+            problem: 'كانت عمليات تقييم الأداء تعتمد في بعض الأحيان على مراجعة مجموعة من المؤشرات بشكل يدوي، مما أدى إلى صعوبة تجميع عناصر التقييم المختلفة، اختلاف تقدير أهمية كل مؤشر من مدير إلى آخر، احتمالية تأثر التقييم بالانطباعات الشخصية، استغراق وقت في إعداد ومراجعة نتائج الأداء، وصعوبة تحديد نقاط القوة والاحتياج للتطوير لدى الموظفين.',
+            solution: 'تعتمد الأداة على تقسيم تقييم الموظف إلى مجموعة من العناصر الرئيسية، بحيث يحصل كل عنصر على وزن نسبي يعكس أهميته في التقييم النهائي، مع مؤشرات مثل تحقيق المستهدفات، الإنتاجية، جودة الأداء، الالتزام بالإجراءات، ومستوى الإنجاز، ثم تقوم بحساب النتيجة النهائية للتقييم، نسبة تحقيق كل عنصر، مستوى أداء الموظف، ونقاط القوة والجوانب التي تحتاج إلى تحسين.',
+            workflow: 'اختيار الموظف ← إدخال درجات العناصر (أو جلب آلي) ← احتساب التقييم ← عرض النتيجة النهائية ومستوى الأداء ← اتخاذ القرار',
+            value: 'توحيد طريقة تقييم الموظفين، زيادة العدالة والشفافية في التقييم، تقليل الاعتماد على التقدير الشخصي، توفير وقت إعداد ومراجعة التقييمات، مساعدة المديرين على اتخاذ قرارات مبنية على بيانات، ودعم قرارات التدريب والترقيات.',
+            future: 'الربط المباشر بنتائج الموظف التشغيلية، إنشاء لوحات متابعة للأداء، مقارنة الأداء بين الفترات المختلفة، إضافة تقارير تحليلية للإدارة، ربطها بنظام الحوافز وتحدي الموظفين.'
+        }];
+
+        // ================================================================
+        // DATA — الأدوات المستقبلية (معدومة بأيقونات)
+        // ================================================================
+
+        const futureToolsData = [{
+            id: 101,
+            name: 'تسجيل العملاء المحتملين',
+            icon: 'fa-user-plus',
+            iconColor: 'accent',
+            desc: 'نظام لتسجيل ومتابعة العملاء من الحملات التسويقية والزيارات الميدانية.',
+            category: 'إدارة العملاء',
+            detail: 'يهدف إلى عدم فقدان أي فرصة بيع، ومتابعة مراحل العميل من أول تواصل حتى صرف التمويل، وقياس كفاءة الجهود التسويقية.'
+        }, {
+            id: 102,
+            name: 'متابعة دورة طلب التمويل',
+            icon: 'fa-timeline',
+            iconColor: 'gold',
+            desc: 'متابعة رحلة الطلب منذ تسجيله وحتى الصرف مع اكتشاف نقاط التعطيل.',
+            category: 'متابعة الطلبات',
+            detail: 'يشمل تاريخ تقديم الطلب، مرحلة الطلب الحالية، أسباب التأخير، والمسؤول عن كل مرحلة.'
+        }, {
+            id: 103,
+            name: 'الزيارة الميدانية الذكية',
+            icon: 'fa-map-marked-alt',
+            iconColor: 'success',
+            desc: 'نظام متكامل لإدارة الزيارات مع تسجيل الموقع وإضافة الصور وتقارير فورية.',
+            category: 'الزيارات الميدانية',
+            detail: 'يساعد في تحسين الرقابة الميدانية، رفع جودة الاستعلام، وتقليل مخاطر الائتمان.'
+        }, {
+            id: 104,
+            name: 'التقييم الائتماني الذكي',
+            icon: 'fa-brain',
+            iconColor: 'purple',
+            desc: 'نموذج لتقييم قدرة العميل على السداد مع نسبة الالتزامات للدخل ودرجة المخاطر.',
+            category: 'التقييم الائتماني',
+            detail: 'يدعم قرار المنح، ويقلل مخاطر التعثر، ويوحد أسلوب التقييم.'
+        }, {
+            id: 105,
+            name: 'لوحة متابعة أداء الفرع',
+            icon: 'fa-chart-pie',
+            iconColor: 'gold',
+            desc: 'لوحة تحكم لحظية تعرض حجم المحفظة، الإنتاج اليومي، التحصيل، التسرب، وأداء الموظفين.',
+            category: 'لوحات التحكم',
+            detail: 'تمكن المدير من اتخاذ القرار بسرعة بناءً على بيانات واضحة.'
+        }, {
+            id: 106,
+            name: 'التخطيط اليومي والأسبوعي',
+            icon: 'fa-calendar-days',
+            iconColor: 'success',
+            desc: 'مساعدة المدير في توزيع المهام ومتابعة التنفيذ مع خطط الزيارات والمستهدف اليومي.',
+            category: 'التخطيط',
+            detail: 'يتضمن متابعة الإنجاز والمهام المتأخرة.'
+        }, {
+            id: 107,
+            name: 'تحليل أسباب التسرب',
+            icon: 'fa-people-arrows',
+            iconColor: 'purple',
+            desc: 'تحليل أسباب خروج العملاء من المحفظة حسب السبب، الموظف، المنطقة، ونوع المنتج.',
+            category: 'التحليل',
+            detail: 'يساعد في وضع حلول استباقية للحفاظ على العملاء.'
+        }, {
+            id: 108,
+            name: 'لوحة التحكم التنفيذية',
+            icon: 'fa-tv',
+            iconColor: 'rose',
+            desc: 'رؤية شاملة للإدارة العليا عن أداء المؤسسة مع مقارنة الفروع ونمو المحفظة.',
+            category: 'الإدارة التنفيذية',
+            detail: 'تشمل مؤشرات المخاطر وتحقيق الأهداف.'
+        }, {
+            id: 109,
+            name: 'نظام الإنذار المبكر للمخاطر',
+            icon: 'fa-bell',
+            iconColor: 'orange',
+            desc: 'اكتشاف المؤشرات التي قد تؤدي إلى انخفاض الأداء أو زيادة المخاطر.',
+            category: 'المخاطر',
+            detail: 'مثل ارتفاع التسرب، انخفاض الإنتاج، زيادة التأخير، وانخفاض جودة المحفظة.'
+        }, {
+            id: 110,
+            name: 'نظام التقارير الذكية',
+            icon: 'fa-file-chart-column',
+            iconColor: 'cyan',
+            desc: 'إنشاء التقارير تلقائيًا بدلاً من إعدادها يدويًا، يومية وشهرية وأداء الفروع والموظفين.',
+            category: 'التقارير',
+            detail: 'يوفر تقارير يومية وشهرية وتقارير أداء الفروع والموظفين.'
+        }, {
+            id: 111,
+            name: 'المساعد الذكي للموظف',
+            icon: 'fa-robot',
+            iconColor: 'accent',
+            desc: 'مساعد داخل المنصة يجيب عن أسئلة الموظف حول الإجراءات والسياسات.',
+            category: 'الذكاء الاصطناعي',
+            detail: 'مثل شروط منتج معين، المستندات المطلوبة، وطريقة الحساب.'
+        }, {
+            id: 112,
+            name: 'محلل أداء ذكي',
+            icon: 'fa-chart-simple',
+            iconColor: 'purple',
+            desc: 'تحليل بيانات الأداء واقتراح إجراءات تحسين بناءً على المؤشرات.',
+            category: 'الذكاء الاصطناعي',
+            detail: 'مثل انخفاض إنتاجية الموظف بسبب انخفاض عدد الزيارات مقارنة بالمتوسط.'
+        }];
+
+        // ================================================================
+        // USAGE STEPS
+        // ================================================================
+
+        const usageSteps = {
+            1: [
+                'إدخال البيانات الأساسية: قيمة التمويل، مدة السداد، نوع المنتج التمويلي، نسبة العائد والرسوم الإدارية (تُملأ تلقائياً).',
+                'اضغط على زر «احتساب».',
+                'قراءة النتائج: قيمة القسط الشهري، إجمالي قيمة السداد، جدول المستندات المطلوبة، تاريخ بداية السداد ومواعيد الأقساط.',
+                'استخدم النتائج لعرض التمويل على العميل، أو انتقل إلى "جدول السداد" لطباعته.'
+            ],
+            2: [
+                'البحث عن العميل: أدخل رقم التمويل أو الكود التعريفي.',
+                'مراجعة البيانات: ستظهر قيمة التمويل الأصلية، المدة، والأقساط المسددة.',
+                'إدخال تاريخ التصفية: حدد تاريخ اليوم أو التاريخ المطلوب للإغلاق.',
+                'الضغط على «احتساب التسوية»: ستظهر قيمة المبلغ المطلوب للسداد وتفاصيل التسوية.',
+                'إبلاغ العميل بالرقم النهائي بوضوح مستنداً إلى الأداة.'
+            ],
+            3: [
+                'تسجيل الدخول بصلاحية الموظف (ستظهر بياناته الأساسية).',
+                'إدخال مؤشرات الأداء: نسبة تحقيق المستهدف الشهري، حجم الإنتاج، مؤشرات الجودة.',
+                'الضغط على «احتساب الحافز».',
+                'قراءة التقرير: قيمة الحافز المستحق، مستوى تحقيق الهدف، تفاصيل مكونات الحافز.',
+                '(نصيحة للمدير): استخدم الأداة قبل نهاية الشهر لتحفيز الموظفين على سد الفجوات.'
+            ],
+            4: [
+                'إدخال بيانات الراتب: إجمالي الأجر الأساسي، الأجر التأميني، قيمة الاستقطاعات الأخرى.',
+                'تحديد الشريحة: ستقوم الأداة تلقائياً بتطبيق الشرائح والإعفاءات المعتمدة.',
+                'الضغط على «احتساب»: تظهر قيمة الضريبة المستحقة وصافي الدخل بعد الخصم.',
+                'مراجعة التفاصيل: تأكد من تفاصيل مراحل الحساب قبل إصدار إشعار الراتب للموظف.'
+            ],
+            5: [
+                'فتح الأداة: ستظهر قائمة منظمة بجميع جهات الايسكور المتعامل معها.',
+                'البحث: استخدم شريط البحث لكتابة اسم الجهة.',
+                'عرض البيانات: ستظهر بيانات تعريفية عن الجهة، ورقم الاتصال، وطريقة الربط.',
+                'الربط بالإجراء: أثناء تنفيذ إجراء الاستعلام، ارجع لهذه الأداة كمرجع موحد.'
+            ],
+            6: [
+                'رفع الملفات: اضغط على «رفع الملفات» واختر جميع الملفات (Excel) التي ترغب في دمجها.',
+                'تحديد الهيكل: حدد الصف الذي يحتوي على رؤوس الأعمدة.',
+                'الضغط على «دمج»: ستقوم الأداة بمعالجة البيانات وتوحيد شكلها.',
+                'التنزيل: سيظهر ملف واحد جديد جاهز للتنزيل يحتوي على جميع البيانات مجمعة.',
+                'المراجعة: راجع الملف النهائي قبل رفعه للإدارة أو تحليله.'
+            ],
+            7: [
+                'إدخال بيانات التمويل: قيمة التمويل، المدة، قيمة القسط، تاريخ بداية التمويل.',
+                'الضغط على «إنشاء الجدول»: سيتم إنشاء جدول يحتوي على رقم القسط، التاريخ الفعلي للاستحقاق، والقيمة المستحقة.',
+                'مراجعة الجدول: تأكد من تطابق التواريخ.',
+                'الإجراء النهائي: اعرض الجدول للعميل على الشاشة، أو اطبعه ووقعه مع العميل كإقرار بالسداد.'
+            ],
+            8: [
+                'أثناء الزيارة الميدانية: افتح الأداة على الهاتف المحمول أو الجهاز اللوحي.',
+                'تفعيل تحديد الموقع: اسمح للتطبيق بالوصول إلى GPS.',
+                'ربط العميل: ابحث عن اسم العميل أو رقم التمويل، ثم اضغط على «تسجيل الموقع الحالي».',
+                'حفظ الإحداثيات: ستُحفظ إحداثيات الموقع وترتبط بملف العميل.',
+                'استخدامها لاحقاً: في الزيارات القادمة، افتح الخريطة لترى أقرب طريق للوصول للعميل مباشرة.'
+            ],
+            9: [
+                'إدخال البيانات الحالية: حجم المحفظة الحالي، قيمة التسرب المتوقع، نسبة النمو المستهدفة.',
+                'الضغط على «احتساب الاحتياج».',
+                'قراءة المخرجات: قيمة إجمالي الإنتاج المطلوب، عدد الحالات/العملاء المطلوب استقطابهم.',
+                'التوزيع: وزع هذا الرقم على موظفي الائتمان كأهداف يومية أو أسبوعية.'
+            ],
+            10: [
+                'اختيار الموظف المراد تقييمه من القائمة.',
+                'إدخال درجات العناصر: درجة تحقيق المستهدف، درجة الإنتاجية، درجة الالتزام والإجراءات، درجة الجودة.',
+                'الضغط على «احتساب التقييم»: تظهر النتيجة النهائية ومستوى الأداء.',
+                'اتخاذ القرار: استخدم النتيجة لدعم قرارات الترقية، التدريب، أو ربطها بـ "حاسبة الحوافز".'
+            ]
+        };
+
+        // ================================================================
+        // RENDER TOOLS
+        // ================================================================
+        function renderTools() {
+            const grid = document.getElementById('toolsGrid');
+            grid.innerHTML = '';
+            toolsData.forEach((tool, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4';
+                col.setAttribute('data-aos', 'fade-up');
+                col.setAttribute('data-aos-delay', (index * 60) + '');
+                col.innerHTML = `
+                    <div class="tool-card" data-tool-id="${tool.id}" 
+                         style="--mouse-x:50%;--mouse-y:50%;">
+                        <div class="tool-icon ${tool.iconColor}">
+                            <i class="fas ${tool.icon}"></i>
+                        </div>
+                        <h4>${tool.name}</h4>
+                        <p class="tool-desc">${tool.desc}</p>
+                        <div class="tool-tags">
+                            <span>تشغيلي</span>
+                            <span>${tool.iconColor === 'gold' ? 'إداري' : 'تشغيلي'}</span>
+                        </div>
+                        <button class="btn-detail" data-tool-id="${tool.id}">
+                            عرض التفاصيل <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    this.style.setProperty('--mouse-x', x + '%');
+                    this.style.setProperty('--mouse-y', y + '%');
+                });
+            });
+
+            document.querySelectorAll('.btn-detail').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = parseInt(this.dataset.toolId);
+                    openToolModal(id);
+                });
+            });
+
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.toolId);
+                    openToolModal(id);
+                });
+            });
+        }
+
+        // ================================================================
+        // RENDER FUTURE TOOLS — بطاقات مثل التشغيلية
+        // ================================================================
+        function renderFutureTools() {
+            const grid = document.getElementById('futureGrid');
+            grid.innerHTML = '';
+            futureToolsData.forEach((tool, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-4';
+                col.setAttribute('data-aos', 'fade-up');
+                col.setAttribute('data-aos-delay', (index * 60) + '');
+                col.innerHTML = `
+                    <div class="tool-card" data-tool-id="${tool.id}" 
+                         style="--mouse-x:50%;--mouse-y:50%;">
+                        <div class="tool-icon ${tool.iconColor}">
+                            <i class="fas ${tool.icon}"></i>
+                        </div>
+                        <h4>${tool.name}</h4>
+                        <p class="tool-desc">${tool.desc}</p>
+                        <div class="tool-tags">
+                            <span>مستقبلي</span>
+                            <span>${tool.category}</span>
+                        </div>
+                        <button class="btn-detail" data-tool-id="${tool.id}" data-future="true">
+                            عرض التفاصيل <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+
+            document.querySelectorAll('#futureGrid .tool-card').forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    this.style.setProperty('--mouse-x', x + '%');
+                    this.style.setProperty('--mouse-y', y + '%');
+                });
+            });
+
+            document.querySelectorAll('#futureGrid .btn-detail').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = parseInt(this.dataset.toolId);
+                    openFutureToolModal(id);
+                });
+            });
+
+            document.querySelectorAll('#futureGrid .tool-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.toolId);
+                    openFutureToolModal(id);
+                });
+            });
+        }
+
+        // ================================================================
+        // MODAL — للأدوات التشغيلية
+        // ================================================================
+        function openToolModal(id) {
+            const tool = toolsData.find(t => t.id === id);
+            if (!tool) return;
+
+            const existing = document.querySelector('.modal-custom');
+            if (existing) existing.remove();
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-custom active';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-label', `${tool.name} - التفاصيل`);
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="إغلاق"><i class="fas fa-xmark"></i></button>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <div class="tool-icon ${tool.iconColor}" style="width:44px;height:44px;font-size:1.2rem;flex-shrink:0;">
+                                <i class="fas ${tool.icon}"></i>
+                            </div>
+                            <h4>${tool.name}</h4>
+                        </div>
+                        <p class="modal-sub">${tool.desc}</p>
+
+                        <div class="detail-section">
+                            <h6><i class="fas fa-circle-exclamation text-primary-custom"></i> المشكلة التي عالجتها</h6>
+                            <p>${tool.problem}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h6><i class="fas fa-lightbulb" style="color:var(--warning);"></i> فكرة الأداة وآلية العمل</h6>
+                            <p>${tool.solution}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h6><i class="fas fa-diagram-project" style="color:var(--success);"></i> سير العمل</h6>
+                            <p>${tool.workflow}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h6><i class="fas fa-gem" style="color:var(--purple);"></i> القيمة التشغيلية</h6>
+                            <p>${tool.value}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h6><i class="fas fa-rocket text-primary-custom"></i> التطويرات المستقبلية</h6>
+                            <p>${tool.future}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) modal.remove();
+            });
+            document.addEventListener('keydown', function esc(e) {
+                if (e.key === 'Escape' && modal) { modal.remove();
+                    document.removeEventListener('keydown', esc); }
+            });
+        }
+
+        // ================================================================
+        // MODAL — للأدوات المستقبلية
+        // ================================================================
+        function openFutureToolModal(id) {
+            const tool = futureToolsData.find(t => t.id === id);
+            if (!tool) return;
+
+            const existing = document.querySelector('.modal-custom');
+            if (existing) existing.remove();
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-custom active';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-label', `${tool.name} - التفاصيل`);
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="إغلاق"><i class="fas fa-xmark"></i></button>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <div class="tool-icon ${tool.iconColor}" style="width:44px;height:44px;font-size:1.2rem;flex-shrink:0;">
+                                <i class="fas ${tool.icon}"></i>
+                            </div>
+                            <h4>${tool.name}</h4>
+                        </div>
+                        <p class="modal-sub">${tool.desc}</p>
+
+                        <div class="detail-section">
+                            <h6><i class="fas fa-tag" style="color:var(--warning);"></i> التصنيف</h6>
+                            <p>${tool.category}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h6><i class="fas fa-lightbulb" style="color:var(--warning);"></i> فكرة الأداة</h6>
+                            <p>${tool.detail}</p>
+                        </div>
+                        <div class="detail-section">
+                            <h6><i class="fas fa-rocket text-primary-custom"></i> القيمة المضافة</h6>
+                            <p>تساهم هذه الأداة في تطوير المنصة من خلال ${tool.category.toLowerCase()}، مما يعزز الكفاءة التشغيلية ويدعم اتخاذ القرار.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) modal.remove();
+            });
+            document.addEventListener('keydown', function esc(e) {
+                if (e.key === 'Escape' && modal) { modal.remove();
+                    document.removeEventListener('keydown', esc); }
+            });
+        }
+
+        // ================================================================
+        // RENDER USAGE ACCORDION
+        // ================================================================
+        function renderUsage() {
+            const container = document.getElementById('usageAccordion');
+            container.innerHTML = '';
+            toolsData.forEach((tool) => {
+                const steps = usageSteps[tool.id] || ['لا توجد خطوات محددة بعد.'];
+                const div = document.createElement('div');
+                div.className = 'accordion-item';
+                div.innerHTML = `
+                    <button class="accordion-header collapsed" data-bs-toggle="collapse" data-bs-target="#usage${tool.id}" aria-expanded="false" aria-controls="usage${tool.id}">
+                        <i class="fas ${tool.icon}"></i>
+                        <span>${tool.name}</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </button>
+                    <div class="collapse" id="usage${tool.id}" data-bs-parent="#usageAccordion">
+                        <div class="accordion-body">
+                            <ol>
+                                ${steps.map(s => `<li>${s}</li>`).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // ================================================================
+        // SEARCH
+        // ================================================================
+        function setupSearch() {
+            const overlay = document.getElementById('search-overlay');
+            const input = document.getElementById('searchInput');
+            const results = document.getElementById('searchResults');
+            const toggleBtn = document.getElementById('searchToggle');
+
+            toggleBtn.addEventListener('click', () => {
+                overlay.classList.toggle('active');
+                if (overlay.classList.contains('active')) {
+                    input.focus();
+                }
+            });
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+
+            input.addEventListener('input', function() {
+                const q = this.value.trim().toLowerCase();
+                if (!q) { results.innerHTML = ''; return; }
+
+                const matches = [];
+                toolsData.forEach(t => {
+                    const text = (t.name + ' ' + t.desc + ' ' + t.problem + ' ' + t.solution + ' ' + t.value)
+                        .toLowerCase();
+                    if (text.includes(q)) {
+                        matches.push({ title: t.name, desc: t.desc, id: t.id, type: 'أداة تشغيلية' });
+                    }
+                });
+
+                futureToolsData.forEach(t => {
+                    const text = (t.name + ' ' + t.desc + ' ' + t.detail + ' ' + t.category).toLowerCase();
+                    if (text.includes(q)) {
+                        matches.push({ title: t.name, desc: t.desc, id: t.id, type: 'أداة مستقبلية',
+                            isFuture: true });
+                    }
+                });
+
+                const sections = [
+                    { title: 'الأدوات التشغيلية', id: 'tools', type: 'قسم' },
+                    { title: 'أدوات المستقبل', id: 'future', type: 'قسم' },
+                    { title: 'دليل الاستخدام', id: 'usage', type: 'قسم' }
+                ];
+                sections.forEach(s => {
+                    if (s.title.toLowerCase().includes(q)) {
+                        matches.push({ title: s.title, desc: `اذهب إلى ${s.title}`, id: s.id, type: s.type,
+                            isSection: true });
+                    }
+                });
+
+                if (matches.length === 0) {
+                    results.innerHTML =
+                        `<p style="color:var(--text-muted);font-size:0.9rem;padding:6px 0;">لا توجد نتائج</p>`;
+                    return;
+                }
+
+                results.innerHTML = matches.map(m => `
+                    <a href="${m.isSection ? '#' + m.id : '#'}" class="result-item" data-section="${m.id}" data-future="${m.isFuture || false}" data-tool-id="${m.id || ''}">
+                        <strong>${m.title}</strong>
+                        <small>${m.desc} — ${m.type}</small>
+                    </a>
+                `).join('');
+
+                results.querySelectorAll('.result-item').forEach(el => {
+                    el.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const section = this.dataset.section;
+                        const isFuture = this.dataset.future === 'true';
+                        const toolId = parseInt(this.dataset.toolId);
+                        overlay.classList.remove('active');
+                        input.value = '';
+                        results.innerHTML = '';
+                        if (section && !toolId) {
+                            const target = document.getElementById(section);
+                            if (target) target.scrollIntoView({ behavior: 'smooth' });
+                        } else if (toolId) {
+                            if (isFuture) {
+                                openFutureToolModal(toolId);
+                            } else {
+                                openToolModal(toolId);
+                            }
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    overlay.classList.toggle('active');
+                    if (overlay.classList.contains('active')) input.focus();
+                }
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            });
+        }
+
+        // ================================================================
+        // COUNTERS
+        // ================================================================
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(c => {
+                const target = parseInt(c.dataset.target);
+                let current = 0;
+                const increment = Math.ceil(target / 60);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        c.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        c.textContent = current;
+                    }
+                }, 25);
+            });
+        }
+
+        // ================================================================
+        // PARTICLES
+        // ================================================================
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const COUNT = 45;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize, { passive: true });
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.8 + 0.3;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.3 + 0.05;
+                    this.color = Math.random() > 0.5 ? '0, 210, 255' : '37, 99, 235';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+
+            function drawLines() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(255,255,255,${(1 - dist / 100) * 0.04})`;
+                            ctx.lineWidth = 0.3;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.update();
+                    p.draw(); });
+                drawLines();
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ================================================================
+        // DARK / LIGHT MODE
+        // ================================================================
+        function setupTheme() {
+            const toggle = document.getElementById('themeToggle');
+            const icon = document.getElementById('themeIcon');
+            const sidebarIcon = document.getElementById('sidebarThemeIcon');
+            const stored = localStorage.getItem('platform-theme');
+            if (stored === 'light') {
+                document.body.classList.add('light-mode');
+                icon.className = 'fas fa-sun';
+                if (sidebarIcon) sidebarIcon.className = 'fas fa-sun';
+            }
+            toggle.addEventListener('click', () => {
+                const isLight = document.body.classList.toggle('light-mode');
+                icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+                if (sidebarIcon) sidebarIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+                localStorage.setItem('platform-theme', isLight ? 'light' : 'dark');
+            });
+            document.getElementById('sidebarThemeToggle')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggle.click();
+            });
+        }
+
+        // ================================================================
+        // NAVIGATION + SIDEBAR
+        // ================================================================
+        function setupNav() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const closeBtn = document.getElementById('sidebarClose');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', openSidebar);
+            closeBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            sidebar.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', closeSidebar);
+            });
+
+            const sections = document.querySelectorAll('section[id], header[id]');
+            const navAnchors = document.querySelectorAll('.nav-links a, .sidebar a');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(s => {
+                    const top = s.offsetTop - 100;
+                    if (window.scrollY >= top) current = s.id;
+                });
+                navAnchors.forEach(a => {
+                    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+                });
+
+                const nav = document.querySelector('.navbar-custom');
+                nav.classList.toggle('scrolled', window.scrollY > 40);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar();
+            });
+        }
+
+        // ================================================================
+        // BACK TO TOP
+        // ================================================================
+        function setupBackToTop() {
+            const btn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                btn.classList.toggle('visible', window.scrollY > 400);
+            });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // ================================================================
+        // PROGRESS INDICATOR
+        // ================================================================
+        function setupProgress() {
+            const indicator = document.getElementById('progress-indicator');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                indicator.style.width = progress + '%';
+            }, { passive: true });
+        }
+
+        // ================================================================
+        // MOUSE GLOW
+        // ================================================================
+        function setupMouseGlow() {
+            const glow = document.getElementById('mouse-glow');
+            let timeout;
+            document.addEventListener('mousemove', (e) => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+                glow.classList.add('visible');
+                clearTimeout(timeout);
+                timeout = setTimeout(() => glow.classList.remove('visible'), 2500);
+            }, { passive: true });
+        }
+
+        // ================================================================
+        // GSAP HERO
+        // ================================================================
+        function animateHero() {
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.hero h1 .highlight', {
+                    duration: 1,
+                    scale: 0.8,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    delay: 0.2
+                });
+                gsap.from('.hero .subtitle', {
+                    duration: 0.8,
+                    y: 24,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    delay: 0.4
+                });
+                gsap.from('.hero .btn-group-hero', {
+                    duration: 0.7,
+                    y: 24,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    delay: 0.6
+                });
+                gsap.from('.hero .stats-row', {
+                    duration: 0.7,
+                    y: 24,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    delay: 0.8
+                });
+                gsap.from('.floating-shapes .shape', {
+                    duration: 1.2,
+                    scale: 0.5,
+                    opacity: 0,
+                    ease: 'power3.out',
+                    stagger: 0.15,
+                    delay: 0.1
+                });
+            }
+        }
+
+        // ================================================================
+        // AOS
+        // ================================================================
+        function initAOS() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 600,
+                    easing: 'ease-out-cubic',
+                    once: true,
+                    offset: 30,
+                });
+            }
+        }
+
+        // ================================================================
+        // BOOTSTRAP ACCORDION
+        // ================================================================
+        function initBootstrapAccordion() {
+            document.querySelectorAll('.accordion-header').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = document.querySelector(this.dataset.bsTarget);
+                    if (target) {
+                        const isOpen = target.classList.contains('show');
+                        const parent = this.closest('.accordion-item').parentElement;
+                        parent.querySelectorAll('.collapse.show').forEach(el => {
+                            if (el.id !== target.id) {
+                                const header = document.querySelector(`[data-bs-target="#${el.id}"]`);
+                                if (header) header.classList.add('collapsed');
+                                el.classList.remove('show');
+                            }
+                        });
+                        if (!isOpen) {
+                            target.classList.add('show');
+                            this.classList.remove('collapsed');
+                        } else {
+                            target.classList.remove('show');
+                            this.classList.add('collapsed');
+                        }
+                    }
+                });
+            });
+        }
+
+        // ================================================================
+        // LOADING
+        // ================================================================
+        function hideLoader() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(() => { loader.style.display = 'none'; }, 600);
+            }, 1000);
+        }
+
+        // ================================================================
+        // INIT
+        // ================================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTools();
+            renderFutureTools();
+            renderUsage();
+            setupSearch();
+            setupTheme();
+            setupNav();
+            setupBackToTop();
+            setupProgress();
+            setupMouseGlow();
+            initParticles();
+            animateHero();
+            initAOS();
+            initBootstrapAccordion();
+            hideLoader();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.2 });
+            const statsRow = document.querySelector('.stats-row');
+            if (statsRow) observer.observe(statsRow);
+
+            console.log('🔍 اضغط Ctrl+K للبحث السريع');
+            console.log('🚀 منصة أنا المصري — تم إزالة العناصر المطلوبة وإضافة الأدوات المستقبلية كبطاقات');
+        });
+
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 991 && sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }, { passive: true });
+    </script>
+
+</body>
+</html>
