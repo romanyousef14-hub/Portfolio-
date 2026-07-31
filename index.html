@@ -1038,7 +1038,7 @@
         }
 
         /* ============================================================
-                   MODAL
+                   MODAL — إصلاح مشكلة الفتح والإغلاق
                    ============================================================ */
         .modal-custom {
             position: fixed;
@@ -2405,7 +2405,7 @@
         }
 
         // ================================================================
-        // MODAL — للأدوات التشغيلية
+        // MODAL — للأدوات التشغيلية (مع إصلاح الإغلاق)
         // ================================================================
         function openToolModal(id) {
             const tool = toolsData.find(t => t.id === id);
@@ -2455,18 +2455,33 @@
             `;
             document.body.appendChild(modal);
 
-            modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
+            // === إصلاح مشكلة الإغلاق ===
+            // 1. زر الإغلاق
+            modal.querySelector('.modal-close').addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeModal(modal);
+            });
+
+            // 2. النقر على الخلفية (Backdrop) — الطريقة المحسّنة
             modal.addEventListener('click', function(e) {
-                if (e.target === this) modal.remove();
+                // أغلق فقط إذا كان النقر خارج محتوى النافذة المنبثقة
+                if (!e.target.closest('.modal-content')) {
+                    closeModal(modal);
+                }
             });
-            document.addEventListener('keydown', function esc(e) {
-                if (e.key === 'Escape' && modal) { modal.remove();
-                    document.removeEventListener('keydown', esc); }
-            });
+
+            // 3. مفتاح Escape
+            function handleEscape(e) {
+                if (e.key === 'Escape') {
+                    closeModal(modal);
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            }
+            document.addEventListener('keydown', handleEscape);
         }
 
         // ================================================================
-        // MODAL — للأدوات المستقبلية
+        // MODAL — للأدوات المستقبلية (مع إصلاح الإغلاق)
         // ================================================================
         function openFutureToolModal(id) {
             const tool = futureToolsData.find(t => t.id === id);
@@ -2508,14 +2523,37 @@
             `;
             document.body.appendChild(modal);
 
-            modal.querySelector('.modal-close').addEventListener('click', () => modal.remove());
+            // === إصلاح مشكلة الإغلاق ===
+            // 1. زر الإغلاق
+            modal.querySelector('.modal-close').addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeModal(modal);
+            });
+
+            // 2. النقر على الخلفية (Backdrop) — الطريقة المحسّنة
             modal.addEventListener('click', function(e) {
-                if (e.target === this) modal.remove();
+                if (!e.target.closest('.modal-content')) {
+                    closeModal(modal);
+                }
             });
-            document.addEventListener('keydown', function esc(e) {
-                if (e.key === 'Escape' && modal) { modal.remove();
-                    document.removeEventListener('keydown', esc); }
-            });
+
+            // 3. مفتاح Escape
+            function handleEscape(e) {
+                if (e.key === 'Escape') {
+                    closeModal(modal);
+                    document.removeEventListener('keydown', handleEscape);
+                }
+            }
+            document.addEventListener('keydown', handleEscape);
+        }
+
+        // ================================================================
+        // دالة مساعدة لإغلاق النافذة المنبثقة بشكل آمن
+        // ================================================================
+        function closeModal(modal) {
+            if (modal && modal.parentNode) {
+                modal.remove();
+            }
         }
 
         // ================================================================
@@ -2985,7 +3023,7 @@
             if (statsRow) observer.observe(statsRow);
 
             console.log('🔍 اضغط Ctrl+K للبحث السريع');
-            console.log('🚀 منصة أنا المصري — تم إزالة العناصر المطلوبة وإضافة الأدوات المستقبلية كبطاقات');
+            console.log('🚀 منصة أنا المصري — تم إصلاح مشكلة فتح وإغلاق نافذة التفاصيل');
         });
 
         window.addEventListener('resize', function() {
